@@ -14,16 +14,11 @@ class ViagemController extends AbstractController {
      * @Route("/", name="index")
     */
     public function testeteste() {
-        // $client = new \GuzzleHttp\Client();
-        // $response = $client->request('GET', 'https://clickbus-teste.herokuapp.com/trips');
-        // $res = json_decode($response->getBody(), true);
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://clickbus-teste.herokuapp.com/trips');
+        $res = json_decode($response->getBody(), true);
 
-        // return new Response(
-        //     '<html><body>'.$res["departures"][0]["from"].'</body></html>'
-        // );
-        // var $res = []
-
-        return $this->render('index.html.twig');
+        return $this->render('index.html.twig', ['trips' => $res['departures']]);
     }
 
     /**
