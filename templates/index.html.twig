@@ -2,6 +2,19 @@
 
 {% block body %}
     <div class="content">
-        {{ include('card.html.twig') }}
+        {% for trip in trips %}
+            {% set res = {
+                'companyLogo': trip.parts[0].travelCompany.logo,
+                'departureTime': trip.parts[0].departure.schedule.time,
+                'returnTime': trip.parts[0].arrival.schedule.time,
+                'stationDeparture': trip.from,
+                'stationArrival': trip.to,
+                'duration': trip.duration,
+                'class': trip.parts[0].bus.name,
+                'price': trip.prices
+               } %}
+
+            {{ include('card.html.twig', { 'card': res }) }}
+        {% endfor %}
     </div>
 {% endblock %}
