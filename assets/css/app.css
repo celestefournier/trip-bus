@@ -1,6 +1,4 @@
-/*** fontes ***/
-
-/* Elementos base */
+/*** Elementos base ***/
 
 html {
     font-size: 100%;
@@ -55,8 +53,6 @@ button {
     cursor: pointer;
 }
 
-/* Corpo */
-
 .navbar {
     height: 60px;
     max-width: 1024px;
@@ -66,17 +62,36 @@ button {
     color: #fff;
 }
 
+/*** Elementos modulares ***/
+
+/* CARD */
+
 .card {
     width: 100%;
-    height: 74px;
-    display: flex;
+    margin-top: 8px;
     border: 1px solid #f5f5f5;
     border-bottom: 1px solid #e3e3e3;
     background: #ffffff;
     cursor: pointer;
 }
 
-.card > div {
+.card.open {
+    cursor: auto;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card .trip {
+    width: 100%;
+    height: 74px;
+    display: flex;
+}
+
+.card .trip > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,49 +99,50 @@ button {
     flex: 1;
 }
 
-.card .company {
+.card .trip .company {
     padding: 20px;
 }
 
-.card .company img {
+.card .trip .company img {
+    width: 100%;
     height: 100%;
 }
 
-.card .hour {
+.card .trip .hour {
     display: flex;
     flex-direction: column;
 }
 
-.card .hour .departure-time {
+.card .trip .hour .departure-time {
     font-size: 1rem;
     font-weight: bold;
 }
 
-.card .travel-route {
+.card .trip .trip-route {
     flex: 0 0 auto;
     align-items: normal;
     flex-direction: column;
     font-size: 0.9rem;
 }
 
-.card .duration {
+.card .trip .duration {
     white-space: nowrap;
 }
 
-.card .price {
+.card .trip .price {
     white-space: nowrap;
 }
 
-.card .price span {
+.card .trip .price span {
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.card .search {
+.card .trip .search {
     padding-right: 20px;
 }
 
-.card .search-btn {
+.card .trip .search-btn {
     height: 30px;
     width: 95px;
     background-color: #ffcc3e;
@@ -135,18 +151,147 @@ button {
     border-radius: 4px;
 }
 
-.card .search-btn:hover {
+.card .trip .search-btn:hover {
     background-color: #ffbf0b;
 }
 
-.card .search-btn.active {
+.card .trip .search-btn.active {
     background-color: #ffffff;
     border-color: #5d1499;
 }
 
-.card .search-btn.active:hover {
+.card .trip .search-btn.active:hover {
     border-width: 2px;
 }
+
+.card .seats {
+    width: 100%;
+    display: none;
+    padding: 15px;
+}
+
+.card .seats .bus {
+    height: 209px;
+    position: relative;
+    background-image: url("https://www.clickbus.com.br/static/image/bus.svg");
+    background-repeat: no-repeat;
+}
+
+.card .seats .bus-seats {
+    width: 566px;
+    height: 176px;
+    position: absolute;
+    top: 50%;
+    left: 90px;
+    transform: translateY(-50%);
+}
+
+.card .bus-seats .seat {
+    width: 36px;
+    height: 32px;
+    position: absolute;
+}
+
+.card .bus-seats .seat span {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    transform: translate(-50%,-50%);
+    color: #ffffff;
+}
+
+.card .seats li[x="0"] { left: calc(44px * 0); }
+.card .seats li[x="1"] { left: calc(44px * 1); }
+.card .seats li[x="2"] { left: calc(44px * 2); }
+.card .seats li[x="3"] { left: calc(44px * 3); }
+.card .seats li[x="4"] { left: calc(44px * 4); }
+.card .seats li[x="5"] { left: calc(44px * 5); }
+.card .seats li[x="6"] { left: calc(44px * 6); }
+.card .seats li[x="7"] { left: calc(44px * 7); }
+.card .seats li[x="8"] { left: calc(44px * 8); }
+.card .seats li[x="9"] { left: calc(44px * 9); }
+.card .seats li[x="10"] { left: calc(44px * 10); }
+.card .seats li[x="11"] { left: calc(44px * 11); }
+.card .seats li[x="12"] { left: calc(44px * 12); }
+
+.card .seats li[y="0"] { bottom: calc(40px * 0); }
+.card .seats li[y="1"] { bottom: calc(40px * 1); }
+.card .seats li[y="2"] { bottom: calc(40px * 2); }
+.card .seats li[y="3"] { top: calc(40px * 1); }
+.card .seats li[y="4"] { top: calc(40px * 0); }
+
+.card .bus-seats .available {
+    cursor: pointer;
+}
+
+.card .bus-seats .available::before {
+    content: '';
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    border-radius: 10%;
+    background-color: #7ecc00;
+}
+
+.card .bus-seats .available::after {
+    content: '';
+    width: 8px;
+    height: 24px;
+    display: block;
+    position: absolute;
+    border-radius: 4px;
+    background-color: #6eb300;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.card .bus-seats .busy {
+    background-image: url("https://www.clickbus.com.br/static/image/seat-busy.svg");
+    background-repeat: no-repeat;
+}
+
+.card .seats .captions {
+    display: flex;
+    margin-top: 40px;
+}
+
+.card .seats .captions li {
+    display: flex;
+}
+
+.card .seats .captions li:not(:first-child) {
+    margin-left: 15px;
+}
+
+.card .captions li span {
+    margin-left: 7px;
+}
+
+.card .captions .seat-available {
+    width: 16px;
+    height: 16px;
+    background: #7ecc00;
+    border-radius: 2px;
+}
+
+.card .captions .seat-selected {
+    width: 16px;
+    height: 16px;
+    background-color: #ffcc3e;
+    border-radius: 2px;
+}
+
+.card .captions .seat-busy {
+    background-image: url("https://www.clickbus.com.br/static/image/legend-seat-busy.svg");
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+}
+
+/*** Corpo da página ***/
 
 .content {
     width: 100%;

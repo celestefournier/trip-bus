@@ -1,19 +1,40 @@
-<div class="card">
-    <div class="company">
-        <img src="{{ card.companyLogo }}" alt="Empresa de ônibus">
+<div class="card" data-id="{{ card.tripId }}">
+    <div class="trip">
+        <div class="company">
+            <img src="{{ card.companyLogo }}" alt="Empresa de ônibus">
+        </div>
+        <div class="hour">
+            <time class="departure-time">{{ card.departureTime }}</time>
+            <time class="return-time">{{ card.returnTime }}</time>
+        </div>
+        <div class="trip-route">
+            <span class="station-departure">{{ card.stationDeparture }}</span>
+            <span class="station-arrival">{{ card.stationArrival }}</span>
+        </div>
+        <div class="duration"><span>{{ card.duration }}</span></div>
+        <div class="class"><span>{{ card.class }}</span></div>
+        <div class="price"><span>R${{ card.price|replace({'.':","}) }}</span></div>
+        <div class="search">
+            <button class="search-btn">Selecionar</button>
+        </div>
     </div>
-    <div class="hour">
-        <time class="departure-time">{{ card.departureTime }}</time>
-        <time class="return-time">{{ card.returnTime }}</time>
-    </div>
-    <div class="travel-route">
-        <span class="station-departure">{{ card.stationDeparture }}</span>
-        <span class="station-arrival">{{ card.stationArrival }}</span>
-    </div>
-    <div class="duration"><span>{{ card.duration }}</span></div>
-    <div class="class"><span>{{ card.class }}</span></div>
-    <div class="price"><span>R${{ card.price|replace({'.':","}) }}</span></div>
-    <div class="search">
-        <button class="search-btn">Selecionar</button>
+    <div class="seats">
+        <div class="bus">
+            <ul class="bus-seats"></ul>
+        </div>
+        <ul class="captions">
+            <li>
+                <div class="seat-available"></div>
+                <span>Livre</span>
+            </li>
+            <li>
+                <div class="seat-selected"></div>
+                <span>Selecionado</span>
+            </li>
+            <li>
+                <div class="seat-busy"></div>
+                <span>Ocupado</span>
+            </li>
+        </ul>
     </div>
 </div>
